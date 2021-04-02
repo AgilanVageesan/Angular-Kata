@@ -1,0 +1,36 @@
+<h1>{{ selected }}</h1>
+
+<div class="container">
+
+
+<app-employee-count
+[all]="getTotalEmployeeCount()" 
+[male]="getTotalMaleEmployeeCount()" 
+[female]="getTotalFemaleEmployeeCount()" 
+(radioButtonCustomEvent)="onSelectionChanhged($event)"
+></app-employee-count>
+
+<h1>Employee List</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Gender</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let employee of employees">
+            <tr *ngIf="selected =='all' || selected == employee.gender">
+                <td>{{ employee.code }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.gender }}</td>
+            </tr>
+        </ng-container>
+        
+    </tbody>
+</table>
+
+
+</div>

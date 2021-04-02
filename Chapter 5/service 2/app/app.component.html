@@ -1,0 +1,23 @@
+<div class="container">
+    <h2>App Component</h2>
+
+   <app-post></app-post>
+
+   <table class="table table-borederd">
+       <thead>
+           <tr>
+               <td>Title</td>
+               <td>URL</td>
+               <td>Thumbnail</td>
+           </tr>
+       </thead>
+       <tbody>
+           <tr *ngFor="let photo of photos">
+               <td>{{ photo.title }}</td>
+               <td><img src="{{ photo.url }}"/></td>
+               <td><img src="{{ photo.thumbnailUrl }}"/></td>
+           </tr>
+       </tbody>
+   </table>
+
+</div>

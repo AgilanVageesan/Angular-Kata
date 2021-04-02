@@ -1,0 +1,61 @@
+<h1>Register - Template Driven Form</h1>
+
+<form #userForm="ngForm" (ngSubmit)="onFormSubmit()">
+
+   
+
+    <div class="form-group">
+        <label for="">Name</label>
+        <input type="text" #name="ngModel" [(ngModel)]="userModel.name" 
+        name="userName" class="form-control" 
+        [class.is-invalid]="name.touched && name.invalid" required>
+        <small class="text-danger" [class.d-none]="name.valid || name.untouched">This is required field</small>
+    </div>
+
+    <h2>{{ name.touched}}</h2>
+
+    <div class="form-group">
+        <label for="">Email</label>
+        <input type="text" [(ngModel)]="userModel.email" name="email" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="">Phone</label>
+        <input type="text" [(ngModel)]="userModel.phone" [class.is-invalid]="phone.touched && phone.invalid"
+        #phone="ngModel" name="phone" class="form-control" required pattern="^\d{10}$">
+        <!-- <small class="text-danger" [class.d-none]="phone.untouced || phone.valid">Phone number is required and must be 10 digit</small> -->
+        <div *ngIf="phone.errors && (phone.touched || phone.invalid)">
+            <small class="text-danger" *ngIf="phone.errors.required">This is required field</small>
+            <small class="text-danger" *ngIf="phone.errors.pattern">Phone number must be of 10 digit</small>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="">Topics</label>
+        <select class="form-control" name="topic" [(ngModel)]="userModel.topic">
+            <option selected>Please select a Topic</option>
+            <option *ngFor="let topic of topics">{{ topic }}</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="">Gender</label>
+        <div class="form-check">
+            <input type="radio" name="gender" [(ngModel)]="userModel.gender" value="male"  class="form-check-input">
+            <label for="" class="form-check-label">Male</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" name="gender" [(ngModel)]="userModel.gender" value="female" class="form-check-input">
+            <label for="" class="form-check-label">Female</label>
+        </div>
+    </div>
+
+    <div class="form-check mb-3">
+        <input type="checkbox" [(ngModel)]="userModel.subscribe" name="subscribe"  class="form-check-input">
+        <label for="" class="form-check-label">Subscribe</label>
+    </div>
+
+    <input type="submit" [disabled]="hasError" value="Register" class="btn btn-primary">
+
+
+</form>

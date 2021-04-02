@@ -1,0 +1,43 @@
+<h2>Login - Using Reactive Forms</h2>
+
+{{ loginForm.value | json }}
+
+<form [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value)">
+
+    <div class="form-group">
+        <label for="">Username</label>
+        <input type="text" name="" id="" class="form-control"
+        formControlName="username" [class.is-invalid]="loginForm.get('username').invalid && loginForm.get('username').touched" >
+        <small class="text-danger" [class.d-none]="loginForm.get('username').valid || loginForm.get('username').untouched" >This is a required filed</small>
+    </div>
+
+    <div class="form-group">
+        <label for="">Password</label>
+        <input type="text" name="" id="" class="form-control"
+        formControlName="password" [class.is-invalid]="loginForm.get('password').invalid && loginForm.get('password').touched">
+        <div *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+            <small class="text-danger" *ngIf="loginForm.get('password').errors.required">This is required</small>
+            <small class="text-danger" *ngIf="loginForm.get('password').errors.minlength">Password should between 3 and 6 characters</small>
+        </div>
+    </div>
+
+    <div formGroupName="address">
+        <div class="form-group">
+            <label for="">City</label>
+            <input type="text" formControlName="city" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">State</label>
+            <input type="text" formControlName="state" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">pincode</label>
+            <input type="text" formControlName="pincode" class="form-control">
+        </div>
+    </div>
+
+    <input type="submit" value="Login" [disabled]="loginForm.invalid" class="btn btn-primary">
+    <input type="submit" value="Get Data"  class="btn btn-success">
+
+
+</form>

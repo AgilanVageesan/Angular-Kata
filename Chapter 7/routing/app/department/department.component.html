@@ -1,0 +1,16 @@
+<h1>Department List</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let department of departments" (click)="onSelectedDepartment(department)">
+            <td>{{ department.departmentId }}</td>
+            <td>{{ department.departmentName }}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,9 @@
+.cart, .user{
+    width: 100px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 60px;
+    margin: 20px
+    
+}
